@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Registration Form</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Create an Account</h2>
+      <p>Please fill out the form below to register.</p>
+    </div>
+
+    <!-- Success Feedback Overlay/Message -->
+    <div id="successMessage" class="success-banner hidden">
+      <i class="fa-solid fa-circle-check"></i>
+      <div>
+        <h3>Registration Successful!</h3>
+        <p>Your account has been created successfully.</p>
+      </div>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      
+      <!-- Full Name Field -->
+      <div class="form-group" id="group-fullName">
+        <label for="fullName">Full Name</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-user field-icon"></i>
+          <input type="text" id="fullName" name="fullName" placeholder="John Doe" autocomplete="name">
+          <i class="fa-solid fa-circle-exclamation status-icon invalid-icon"></i>
+          <i class="fa-solid fa-circle-check status-icon valid-icon"></i>
+        </div>
+        <span class="error-text" id="fullNameError"></span>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group" id="group-email">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-envelope field-icon"></i>
+          <input type="email" id="email" name="email" placeholder="john.doe@example.com" autocomplete="email">
+          <i class="fa-solid fa-circle-exclamation status-icon invalid-icon"></i>
+          <i class="fa-solid fa-circle-check status-icon valid-icon"></i>
+        </div>
+        <span class="error-text" id="emailError"></span>
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="form-group" id="group-phone">
+        <label for="phone">Phone Number</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-phone field-icon"></i>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+          <i class="fa-solid fa-circle-exclamation status-icon invalid-icon"></i>
+          <i class="fa-solid fa-circle-check status-icon valid-icon"></i>
+        </div>
+        <span class="error-text" id="phoneError"></span>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group" id="group-password">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock field-icon"></i>
+          <input type="password" id="password" name="password" placeholder="Enter a secure password">
+          <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+            <i class="fa-solid fa-eye" id="eyeIcon"></i>
+          </button>
+        </div>
+        
+        <!-- Password Strength Meter -->
+        <div class="strength-meter-wrapper" id="strengthContainer">
+          <div class="strength-bars">
+            <span class="bar" id="bar1"></span>
+            <span class="bar" id="bar2"></span>
+            <span class="bar" id="bar3"></span>
+            <span class="bar" id="bar4"></span>
+          </div>
+          <span class="strength-text" id="strengthText">Password strength</span>
+        </div>
+        
+        <span class="error-text" id="passwordError"></span>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group" id="group-confirmPassword">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrapper">
+          <i class="fa-solid fa-lock field-icon"></i>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password">
+          <i class="fa-solid fa-circle-exclamation status-icon invalid-icon"></i>
+          <i class="fa-solid fa-circle-check status-icon valid-icon"></i>
+        </div>
+        <span class="error-text" id="confirmPasswordError"></span>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span>Create Account</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,286 @@
+/* --- CSS Variables --- */
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border-color: #d1d5db;
+  --focus-ring: rgba(79, 70, 229, 0.25);
+  
+  --success-color: #10b981;
+  --success-bg: #ecfdf5;
+  --error-color: #ef4444;
+  --error-bg: #fef2f2;
+  --warning-color: #f59e0b;
+  
+  --radius: 12px;
+  --transition-speed: 0.25s;
+}
+
+/* --- Global Reset & Base Styles --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: var(--text-main);
+}
+
+/* --- Form Container Card --- */
+.form-container {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 460px;
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.form-header {
+  margin-bottom: 24px;
+}
+
+.form-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.form-header p {
+  color: var(--text-muted);
+  font-size: 0.925rem;
+}
+
+/* --- Form Elements --- */
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 14px;
+  color: #9ca3af;
+  font-size: 1rem;
+  transition: color var(--transition-speed);
+}
+
+input {
+  width: 100%;
+  padding: 12px 40px 12px 42px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1.5px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
+  background-color: #f9fafb;
+  transition: all var(--transition-speed) ease;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+/* --- Focus & Blur UX States --- */
+.form-group.focused .field-icon {
+  color: var(--primary-color);
+}
+
+.form-group.focused input {
+  background-color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px var(--focus-ring);
+}
+
+/* --- Validation Visual States --- */
+.status-icon {
+  position: absolute;
+  right: 14px;
+  font-size: 1rem;
+  display: none;
+}
+
+.form-group.valid input {
+  border-color: var(--success-color);
+  background-color: #ffffff;
+}
+
+.form-group.valid .valid-icon {
+  display: block;
+  color: var(--success-color);
+}
+
+.form-group.invalid input {
+  border-color: var(--error-color);
+  background-color: var(--error-bg);
+}
+
+.form-group.invalid .invalid-icon {
+  display: block;
+  color: var(--error-color);
+}
+
+.form-group.invalid.focused input {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+/* Dynamic Error Text Message */
+.error-text {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--error-color);
+  margin-top: 6px;
+  min-height: 18px;
+  font-weight: 500;
+  transition: opacity var(--transition-speed);
+}
+
+/* --- Password Toggle Button --- */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 1rem;
+}
+
+.toggle-password:hover {
+  color: var(--text-main);
+}
+
+/* --- Password Strength Meter --- */
+.strength-meter-wrapper {
+  margin-top: 8px;
+  display: none;
+}
+
+.strength-meter-wrapper.visible {
+  display: block;
+}
+
+.strength-bars {
+  display: flex;
+  gap: 4px;
+  height: 4px;
+  margin-bottom: 4px;
+}
+
+.strength-bars .bar {
+  flex: 1;
+  background-color: #e5e7eb;
+  border-radius: 2px;
+  transition: background-color var(--transition-speed);
+}
+
+.strength-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Strength States */
+.strength-meter-wrapper[data-strength="1"] #bar1 { background-color: var(--error-color); }
+.strength-meter-wrapper[data-strength="1"] .strength-text { color: var(--error-color); }
+
+.strength-meter-wrapper[data-strength="2"] #bar1,
+.strength-meter-wrapper[data-strength="2"] #bar2 { background-color: var(--warning-color); }
+.strength-meter-wrapper[data-strength="2"] .strength-text { color: var(--warning-color); }
+
+.strength-meter-wrapper[data-strength="3"] #bar1,
+.strength-meter-wrapper[data-strength="3"] #bar2,
+.strength-meter-wrapper[data-strength="3"] #bar3 { background-color: #3b82f6; }
+.strength-meter-wrapper[data-strength="3"] .strength-text { color: #3b82f6; }
+
+.strength-meter-wrapper[data-strength="4"] #bar1,
+.strength-meter-wrapper[data-strength="4"] #bar2,
+.strength-meter-wrapper[data-strength="4"] #bar3,
+.strength-meter-wrapper[data-strength="4"] #bar4 { background-color: var(--success-color); }
+.strength-meter-wrapper[data-strength="4"] .strength-text { color: var(--success-color); }
+
+/* --- Submit Button --- */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  transition: background-color var(--transition-speed), transform 0.1s ease;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+/* --- Success Banner --- */
+.success-banner {
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-color);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #065f46;
+}
+
+.success-banner i {
+  font-size: 1.5rem;
+  color: var(--success-color);
+}
+
+.success-banner h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.success-banner p {
+  font-size: 0.85rem;
+}
+
+.hidden {
+  display: none !important;
+}
